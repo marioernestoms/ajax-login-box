@@ -1,9 +1,9 @@
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
   // Show the login dialog box on click
-  $('a#show_login').on('click', function(e) {
+  $('a#show_login').on('click', function (e) {
     $('body').prepend('<div class="login_overlay"></div>');
     $('form#login').fadeIn(500);
-    $('div.login_overlay, form#login a.close').on('click', function() {
+    $('div.login_overlay, form#login a.close').on('click', function () {
       $('div.login_overlay').remove();
       $('form#login').hide();
     });
@@ -11,7 +11,7 @@ jQuery(document).ready(function($) {
   });
 
   // Perform AJAX login on form submit
-  $('form#login').on('submit', function(e) {
+  $('form#login').on('submit', function (e) {
     $('form#login p.status')
       .show()
       .text(ajax_login_object.loadingmessage);
@@ -25,7 +25,7 @@ jQuery(document).ready(function($) {
         password: $('form#login #password').val(),
         security: $('form#login #security').val()
       },
-      success: function(data) {
+      success: function (data) {
         $('form#login p.status').text(data.message);
         if (data.loggedin == true) {
           document.location.href = ajax_login_object.redirecturl;
@@ -33,18 +33,5 @@ jQuery(document).ready(function($) {
       }
     });
     e.preventDefault();
-  });
-
-  $('#btnEndStep1').click(function() {
-    $('#step1').addClass('hideMe');
-    $('#step2').removeClass('hideMe');
-  });
-  $('#btnEndStep2').click(function() {
-    $('#step2').addClass('hideMe');
-    $('#step3').removeClass('hideMe');
-  });
-  $('#btnEndStep3').click(function() {
-    // Whatever your final validation and form submission requires
-    $('#sampleModal').modal('hide');
   });
 });
